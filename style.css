@@ -1,0 +1,26 @@
+.body {
+    margin: 0;
+    font-family: var(--e-global-typography-cf4ca9e-font-family),Inter;
+    max-width: 1280px;
+    width: 100%;
+}
+.DVD-section{
+    width: 100%;
+    background-image: url('/Users/szymonadamczewski/Desktop/DVD-rental.png');
+    background-position: cover;
+    background-size: cover;
+    height: 825px;
+}
+.blur{
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(15px);
+    background-color: rgba(0,0,0,0.4);
+    z-index: 1;
+}
+.text{
+    z-index: 2;
+    color: white;
+    text-align: left;
+    
+}
