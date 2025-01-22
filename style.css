@@ -1,6 +1,23 @@
-.body {
-	font-family: var(--e-global-typography-cf4ca9e-font-family), Inter;
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
 }
+
+html {
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+	scroll-padding-top: 100px;
+}
+
+body {
+	font-family: var(--e-global-typography-cf4ca9e-font-family), Inter;
+	background-color: #000;
+	overflow-x: hidden;
+}
+
 .DVD-section {
 	width: 100%;
 	background-image: url('/Users/szymonadamczewski/Desktop/DVD-rental.png');
