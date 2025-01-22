@@ -13,7 +13,7 @@ html {
 }
 
 body {
-	font-family: var(--e-global-typography-cf4ca9e-font-family), Inter;
+font-family: 'Inter', sans-serif;
 	background-color: #000;
 	overflow-x: hidden;
 }
