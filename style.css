@@ -157,6 +157,7 @@ body {
 
 .header_box-left {
 	padding-top: 120px;
+	padding-right: 1rem;
 	display: flex;
 	align-items: start;
 	justify-content: center;
@@ -175,7 +176,7 @@ body {
 .header_box-left p {
 	padding: 0.25rem 0;
 	margin: 1rem 0;
-	font-size: 1.6rem;
+	font-size: 1.8rem;
 }
 
 .header_box-left-btn {
