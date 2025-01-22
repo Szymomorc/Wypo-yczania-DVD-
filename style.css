@@ -40,27 +40,78 @@ body {
 
 .nav {
 	top: 0;
-	width: 100%;
-	max-width: 1400px;
+	width: 100vw;
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
 	background-color: #fff;
 	position: fixed;
 }
 
-.nav-container{
-	width: 100vw;
+.nav-container {
 	display: flex;
+	flex-direction: row;
+width: 80%;
+max-width: 1200px;
+	justify-content: space-between;
+}
+
+.nav_left {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+.nav_left-logo {
+	max-height: 100px;
+}
+
+.nav_left-search {
+	width: 100%;
+	min-height: 100px;
+	padding: 5%;
+	background-color: #fff;
+	display: flex;
+	align-items: center;
 	justify-content: center;
 }
 
-.nav_left-logo {
-	max-height: 120px;
+.nav_left-search-bar {
+	width: 80%;
+	min-width: 400px;
+	background-color: rgba(0, 0, 0, 0.2);
+	display: flex;
+	align-items: center;
+	border-radius: 60px;
+	padding: 5px 10px;
+	backdrop-filter: blur(4px);
+}
+
+.nav_left-search-bar input {
+	background: transparent;
+	flex: 1;
+	border: 0;
+	outline: none;
+	padding: 14px 10px;
+	font-size: 20px;
+}
+
+.nav_left-search-bar button img {
+	width: 20px;
+}
+
+.nav_left-search-bar button {
+	border: 0;
+	border-radius: 50%;
+	height: 5rem;
+	width: 5rem;
+	background-color: #2e627a;
+	cursor: pointer;
 }
 
 .nav_right {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 }
 
 .nav_right-btns {
@@ -88,48 +139,6 @@ body {
 	border-radius: 20px;
 }
 
-.nav_right-search {
-	width: 100%;
-	min-height: 200px;
-	padding: 5%;
-	background-color: #fff;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.nav_right-search-bar {
-	width: 100%;
-	min-width: 750px;
-	background-color: rgba(0, 0, 0, 0.2);
-	display: flex;
-	align-items: center;
-	border-radius: 60px;
-	padding: 10px 20px;
-	backdrop-filter: blur(4px);
-}
-
-.nav_right-search-bar input {
-	background: transparent;
-	flex: 1;
-	border: 0;
-	outline: none;
-	padding: 24px 20px;
-	font-size: 20px;
-}
-
-.nav_right-search-bar button img {
-	width: 20px;
-}
-
-.nav_right-search-bar button {
-	border: 0;
-	border-radius: 50%;
-	height: 60px;
-	width: 60px;
-	background-color: #2e627a;
-	cursor: pointer;
-}
 .footer {
 	display: flex;
 	background-color: black;
