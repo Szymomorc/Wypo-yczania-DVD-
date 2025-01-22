@@ -13,7 +13,7 @@ html {
 }
 
 body {
-font-family: 'Inter', sans-serif;
+	font-family: 'Inter', sans-serif;
 	background-color: #000;
 	overflow-x: hidden;
 }
@@ -51,8 +51,8 @@ font-family: 'Inter', sans-serif;
 .nav-container {
 	display: flex;
 	flex-direction: row;
-width: 80%;
-max-width: 1200px;
+	width: 80%;
+	max-width: 1200px;
 	justify-content: space-between;
 }
 
@@ -60,6 +60,8 @@ max-width: 1200px;
 	display: flex;
 	flex-direction: row;
 	align-items: center;
+	width: 100%;
+	max-width: 600px;
 }
 .nav_left-logo {
 	max-height: 100px;
@@ -76,8 +78,8 @@ max-width: 1200px;
 }
 
 .nav_left-search-bar {
-	width: 80%;
-	min-width: 400px;
+	min-width: 330px;
+	width: 1000%;
 	background-color: rgba(0, 0, 0, 0.2);
 	display: flex;
 	align-items: center;
@@ -92,7 +94,7 @@ max-width: 1200px;
 	border: 0;
 	outline: none;
 	padding: 14px 10px;
-	font-size: 20px;
+	font-size: 2rem;
 }
 
 .nav_left-search-bar button img {
@@ -118,7 +120,7 @@ max-width: 1200px;
 	display: flex;
 	flex-direction: row;
 	color: #033045;
-	font-size: 32px;
+	font-size: 3.2rem;
 	font-weight: 400;
 	line-height: 39px;
 	text-align: center;
@@ -169,7 +171,7 @@ max-width: 1200px;
 	padding: 5px 15px;
 	margin: 5px;
 	text-align: right;
-	font-size: 16px;
+	font-size: 1.6rem;
 }
 .footer_right {
 	display: flex;
@@ -180,7 +182,7 @@ max-width: 1200px;
 	flex-direction: row;
 	display: flex;
 	color: white;
-	font-size: 14px;
+	font-size: 1.4rem;
 	font-weight: 400;
 	line-height: 39px;
 	text-align: center;
@@ -201,13 +203,13 @@ max-width: 1200px;
 	font-weight: 400;
 	flex-direction: row;
 	display: flex;
-	font-size: 20px;
+	font-size: 2rem;
 	text-align: left;
 }
 .footer_right-phone-tel {
 	text-decoration: none;
 	color: white;
-	font-size: 20px;
+	font-size: 2rem;
 	padding: 5px;
 }
 .footer_right-phone-img {
@@ -218,7 +220,7 @@ max-width: 1200px;
 .footer_autors {
 	max-height: 50px;
 	color: white;
-	font-size: 12px;
+	font-size: 1.2rem;
 	background-color: black;
 	text-align: center;
 }
