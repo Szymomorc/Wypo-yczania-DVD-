@@ -14,31 +14,19 @@ html {
 
 body {
 	font-family: 'Inter', sans-serif;
-	background-color: #000;
+	background-color: #2e627a;
 	overflow-x: hidden;
 }
 
-.DVD-section {
+.max-width {
 	width: 100%;
-	background-image: url('/Users/szymonadamczewski/Desktop/DVD-rental.png');
-	background-position: cover;
-	background-size: cover;
-	height: 825px;
+	max-width: 1200px;
 }
-.blur {
-	width: 100%;
-	height: 100%;
-	/*backdrop-filter: blur(15px);*/
-	background-color: rgba(0, 0, 0, 0.4);
-	z-index: 1;
-}
-.text {
-	z-index: 2;
-	color: white;
-	text-align: left;
-}
-
+/* ----------------------------- */
+/* ---------NAV----------------- */
+/* ----------------------------- */
 .nav {
+	z-index: 100;
 	top: 0;
 	width: 100vw;
 	display: flex;
@@ -78,7 +66,7 @@ body {
 }
 
 .nav_left-search-bar {
-	min-width: 330px;
+	min-width: 300px;
 	width: 1000%;
 	background-color: rgba(0, 0, 0, 0.2);
 	display: flex;
@@ -111,20 +99,23 @@ body {
 }
 
 .nav_right {
+	min-width: 400px;
+	width: 100%;
 	display: flex;
-	flex-direction: column;
 	align-items: center;
+	justify-content: end;
 }
 
 .nav_right-btns {
 	display: flex;
 	flex-direction: row;
+
 	color: #033045;
-	font-size: 3.2rem;
+	font-size: 2rem;
 	font-weight: 400;
 	line-height: 39px;
 	text-align: center;
-	padding: 5% 10px;
+	padding: 5px 10px;
 }
 
 .nav_right-btns-btn {
@@ -141,6 +132,79 @@ body {
 	border-radius: 20px;
 }
 
+/* ----------------------------- */
+/* ---------HEADER-------------- */
+/* ----------------------------- */
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+	min-height: 500px;
+	height: 80vh;
+}
+
+.header_box {
+	display: flex;
+	position: relative;
+	max-width: 1200px;
+	width: 100%;
+	height: 100%;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.header_box-left {
+	padding-top: 120px;
+	display: flex;
+	align-items: start;
+	justify-content: center;
+	flex-direction: column;
+	width: 50%;
+	color: #fff;
+}
+
+.header_box-left h1 {
+	font-size: 4rem;
+	line-height: 5rem;
+	letter-spacing: 3px;
+	margin: 2rem 0;
+}
+
+.header_box-left p {
+	padding: 0.25rem 0;
+	margin: 1rem 0;
+	font-size: 1.6rem;
+}
+
+.header_box-left-btn {
+	font-size: 2.2rem;
+	letter-spacing: 3px;
+	color: #2e627a;
+	font-weight: bold;
+	background-color: #fff;
+	border-radius: 20px;
+	border: none;
+	padding: 0.5rem 2rem;
+	margin: 3rem 0;
+}
+
+.header_box-left-btn:hover{
+	color: #fff;
+	background-color: #033045;
+}
+
+.header_box-right {
+	width: 50%;
+	height: 100%;
+	background-image: url(./DVD-rental.png);
+	background-position: center;
+}
+
+/* ----------------------------- */
+/* ---------FOOTER-------------- */
+/* ----------------------------- */
 .footer {
 	display: flex;
 	background-color: black;
