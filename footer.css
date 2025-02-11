@@ -1,0 +1,83 @@
+.footer {
+	display: flex;
+	background-color: black;
+	flex-direction: column;
+}
+.footer_up {
+	max-height: 300px;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	border-top: 15px solid grey;
+	border-bottom: 10px solid grey;
+}
+.footer_left {
+	display: flex;
+	flex-direction: column;
+	margin: 20px;
+	width: auto;
+}
+.footer_left-logo {
+	max-height: 80px;
+	max-width: 80px;
+	margin-left: 22px;
+}
+.footer_left-text {
+	color: #64aac3;
+	padding: 5px 15px;
+	margin: 5px;
+	text-align: right;
+	font-size: 1.6rem;
+}
+.footer_right {
+	display: flex;
+	flex-direction: column;
+	margin: 15px;
+}
+.footer_right-btns {
+	flex-direction: row;
+	display: flex;
+	color: white;
+	font-size: 1.4rem;
+	font-weight: 400;
+	line-height: 39px;
+	text-align: center;
+	padding: 5px 15px;
+}
+.footer_right-btns-btn {
+	padding: 5px 15px;
+	margin: 5px;
+	text-decoration: none;
+	color: white;
+}
+.footer_right-phone {
+	color: white;
+	text-decoration: none;
+	text-align: center;
+	padding: 5px 15px;
+	line-height: 39px;
+	font-weight: 400;
+	flex-direction: row;
+	display: flex;
+	font-size: 2rem;
+	text-align: left;
+}
+.footer_right-phone-tel {
+	text-decoration: none;
+	color: white;
+	font-size: 2rem;
+	padding: 5px;
+}
+.footer_right-phone-img {
+	max-height: 40px;
+	padding: 20px;
+	margin-top: 20px;
+}
+.footer_autors {
+	max-height: 50px;
+	color: white;
+	font-size: 1.2rem;
+	background-color: black;
+	text-align: center;
+}
