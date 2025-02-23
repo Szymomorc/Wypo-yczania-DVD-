@@ -128,66 +128,36 @@ session_start(); // Rozpoczęcie sesji
         <div class="carousel-container">
             <button class="carousel-button left-button2">&#10094;</button>
             <div class="carousel-wrapper2">
-                <div class="carousel-item">
-                    <img src="" alt="" class="carousel-item-img">
-                    <p class="carousel-item-title">TYTUŁ</p>
-                    <p class="carousel-item-director">Reżyser</p>
-                    <button class="carousel-item-btn">WYPOŻYCZ</button>
-                </div>
-                <div class="carousel-item">
-                    <img src="" alt="" class="carousel-item-img">
-                    <p class="carousel-item-title">TYTUŁ</p>
-                    <p class="carousel-item-director">Reżyser</p>
-                    <button class="carousel-item-btn">WYPOŻYCZ</button>
-                </div>
-                <div class="carousel-item">
-                    <img src="" alt="" class="carousel-item-img">
-                    <p class="carousel-item-title">TYTUŁ</p>
-                    <p class="carousel-item-director">Reżyser</p>
-                    <button class="carousel-item-btn">WYPOŻYCZ</button>
-                </div>
-                <div class="carousel-item">
-                    <img src="" alt="" class="carousel-item-img">
-                    <p class="carousel-item-title">TYTUŁ</p>
-                    <p class="carousel-item-director">Reżyser</p>
-                    <button class="carousel-item-btn">WYPOŻYCZ</button>
-                </div>
-                <div class="carousel-item">
-                    <img src="" alt="" class="carousel-item-img">
-                    <p class="carousel-item-title">TYTUŁ</p>
-                    <p class="carousel-item-director">Reżyser</p>
-                    <button class="carousel-item-btn">WYPOŻYCZ</button>
-                </div>
-                <div class="carousel-item">
-                    <img src="" alt="" class="carousel-item-img">
-                    <p class="carousel-item-title">TYTUŁ</p>
-                    <p class="carousel-item-director">Reżyser</p>
-                    <button class="carousel-item-btn">WYPOŻYCZ</button>
-                </div>
-                <div class="carousel-item">
-                    <img src="" alt="" class="carousel-item-img">
-                    <p class="carousel-item-title">TYTUŁ</p>
-                    <p class="carousel-item-director">Reżyser</p>
-                    <button class="carousel-item-btn">WYPOŻYCZ</button>
-                </div>
-                <div class="carousel-item">
-                    <img src="" alt="" class="carousel-item-img">
-                    <p class="carousel-item-title">TYTUŁ</p>
-                    <p class="carousel-item-director">Reżyser</p>
-                    <button class="carousel-item-btn">WYPOŻYCZ</button>
-                </div>
-                <div class="carousel-item">
-                    <img src="" alt="" class="carousel-item-img">
-                    <p class="carousel-item-title">TYTUŁ</p>
-                    <p class="carousel-item-director">Reżyser</p>
-                    <button class="carousel-item-btn">WYPOŻYCZ</button>
-                </div>
-                <div class="carousel-item">
-                    <img src="" alt="" class="carousel-item-img">
-                    <p class="carousel-item-title">TYTUŁ</p>
-                    <p class="carousel-item-director">Reżyser</p>
-                    <button class="carousel-item-btn">WYPOŻYCZ</button>
-                </div>
+                <?php
+                // Wykonanie zapytania w bazie danych
+                $query = "SELECT filmy.*, COUNT(wypozyczenia.film_id) AS wypozyczenia_count 
+                          FROM filmy 
+                          LEFT JOIN wypozyczenia ON filmy.id = wypozyczenia.film_id 
+                          GROUP BY filmy.id 
+                          ORDER BY wypozyczenia_count DESC";
+                $result = mysqli_query($mysqli, $query);
+
+                // Jeśli wynik jest większy od 0 to:
+                if(mysqli_num_rows($result) > 0){
+                    while ($film = mysqli_fetch_assoc($result)){
+                        echo '<div class="carousel-item">';
+                        // pokazuje zdjęcie jeśli jest
+                        // jak nie ma pokazuje tytul
+                        if(!empty($film['okladka'])){
+                            echo '<img src="image.php?id='. htmlspecialchars($film['id']).'" alt="'.htmlspecialchars($film['tytul']).'" class="carousel-item-img">';
+                        }
+                        echo '<p class="carousel-item-title">'. htmlspecialchars($film['tytul']).'</p>';
+                        echo '<p class="carousel-item-director">' . htmlspecialchars($film['rezyser']) .'</p>';
+                        if (isset($_SESSION['user'])) {
+                            // Użytkownik jest zalogowany
+                            echo '<button class="carousel-item-btn">WYPOŻYCZ</button>'; // Przycisk wyporzyć
+                        }
+                        echo '</div>';
+                    }
+                }else{
+                    echo "Brak filmów w bazie.";
+                }
+                ?>
             </div>
             <button class="carousel-button right-button2">&#10095;</button>
         </div>
