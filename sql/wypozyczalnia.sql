@@ -47,7 +47,7 @@ CREATE TABLE `filmy` (
   `ilosc_wypozyczen` int(11) NOT NULL DEFAULT 0,
   `rezyser` varchar(100) DEFAULT NULL,
   `rok_premiery` int(11) NOT NULL,
-  `okladka` longblob DEFAULT NULL
+  `okladka` VARCHAR(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -55,16 +55,16 @@ CREATE TABLE `filmy` (
 --
 
 INSERT INTO `filmy` (`id`, `tytul`, `gatunek`, `data_dodania`, `ilosc_wypozyczen`, `rezyser`, `rok_premiery`, `okladka`) VALUES
-(1, 'Skazani na Shawshank', 'Dramat', '2025-01-17', 0, 'Frank Darabont', 1994, 0x443a2f656c6f2f78616d702f6d7973716c2f646174612f7779706f7a79637a616c6e69612f736861777368616e6b2e6a7067),
-(2, 'Zielona mila', 'Dramat', '2025-01-17', 0, 'Frank Darabont', 1999, 0x443a2f656c6f2f78616d702f6d7973716c2f646174612f7779706f7a79637a616c6e69612f7a69656c6f6e615f6d696c612e6a7067),
-(3, 'Forrest Gump', 'Komedia', '2025-01-17', 0, 'Robert Zemeckis', 1994, 0x443a2f656c6f2f78616d702f6d7973716c2f646174612f7779706f7a79637a616c6e69612f666f72726573745f67756d702e6a7067),
-(4, 'Ojciec chrzestny', 'Kryminalny', '2025-01-17', 0, 'Francis Ford Coppola', 1972, 0x443a2f656c6f2f78616d702f6d7973716c2f646174612f7779706f7a79637a616c6e69612f6f6a636965635f6368727a6573746e792e6a7067),
-(5, 'Mroczny rycerz', 'Akcja', '2025-01-17', 0, 'Christopher Nolan', 2008, 0x443a2f656c6f2f78616d702f6d7973716c2f646174612f7779706f7a79637a616c6e69612f6d726f637a6e795f72796365727a2e6a7067),
-(6, 'Władca Pierścieni: Powrót Króla', 'Fantasy', '2025-01-17', 0, 'Peter Jackson', 2003, 0x443a2f656c6f2f78616d702f6d7973716c2f646174612f7779706f7a79637a616c6e69612f706f77726f745f6b726f6c612e6a7067),
-(7, 'Incepcja', 'Science Fiction', '2025-01-17', 0, 'Christopher Nolan', 2010, 0x443a2f656c6f2f78616d702f6d7973716c2f646174612f7779706f7a79637a616c6e69612f696e636570636a612e6a7067),
-(8, 'Matrix', 'Science Fiction', '2025-01-17', 0, 'Lana Wachowski, Lilly Wachowski', 1999, 0x443a2f656c6f2f78616d702f6d7973716c2f646174612f7779706f7a79637a616c6e69612f6d61747269782e6a7067),
-(9, 'Gladiator', 'Historyczny', '2025-01-17', 0, 'Ridley Scott', 2000, 0x443a2f656c6f2f78616d702f6d7973716c2f646174612f7779706f7a79637a616c6e69612f676c61646961746f722e6a7067),
-(10, 'Titanic', 'Dramat', '2025-01-17', 0, 'James Cameron', 1997, 0x443a2f656c6f2f78616d702f6d7973716c2f646174612f7779706f7a79637a616c6e69612f746974616e69632e6a7067);
+(1, 'Skazani na Shawshank', 'Dramat', '2025-01-17', 0, 'Frank Darabont', 1994, https://srv82359.seohost.com.pl/img/okladka1.jpg),
+(2, 'Zielona mila', 'Dramat', '2025-01-17', 0, 'Frank Darabont', 1999, https://srv82359.seohost.com.pl/img/okladka2.jpg),
+(3, 'Forrest Gump', 'Komedia', '2025-01-17', 0, 'Robert Zemeckis', 1994, https://srv82359.seohost.com.pl/img/okladka3.jpg),
+(4, 'Ojciec chrzestny', 'Kryminalny', '2025-01-17', 0, 'Francis Ford Coppola', 1972, https://srv82359.seohost.com.pl/img/okladka4.jpg),
+(5, 'Mroczny rycerz', 'Akcja', '2025-01-17', 0, 'Christopher Nolan', 2008, https://srv82359.seohost.com.pl/img/okladka5.jpg),
+(6, 'Władca Pierścieni: Powrót Króla', 'Fantasy', '2025-01-17', 0, 'Peter Jackson', 2003, https://srv82359.seohost.com.pl/img/okladka6.jpg),
+(7, 'Incepcja', 'Science Fiction', '2025-01-17', 0, 'Christopher Nolan', 2010, https://srv82359.seohost.com.pl/img/okladka7.jpg),
+(8, 'Matrix', 'Science Fiction', '2025-01-17', 0, 'Lana Wachowski, Lilly Wachowski', 1999, https://srv82359.seohost.com.pl/img/okladka8.jpg),
+(9, 'Gladiator', 'Historyczny', '2025-01-17', 0, 'Ridley Scott', 2000, https://srv82359.seohost.com.pl/img/okladka9.jpg),
+(10, 'Titanic', 'Dramat', '2025-01-17', 0, 'James Cameron', 1997, https://srv82359.seohost.com.pl/img/okladka10.jpg);
 
 -- --------------------------------------------------------
 
