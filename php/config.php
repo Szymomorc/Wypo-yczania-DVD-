@@ -1,6 +1,6 @@
 <?php 
 // połączenie z bazą musi mieć dostęp do większości plików najlepiej ten sam folder
-$mysqli = new mysqli("localhost", "root","","wypozyczalnia");
+$mysqli = new mysqli("localhost", "root","","wyporzyczalnia");
 mysqli_set_charset($mysqli, "utf8");
 // jeśli brak połączeia 
 if ($mysqli -> connect_error) {
