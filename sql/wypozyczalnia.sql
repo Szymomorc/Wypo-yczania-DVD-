@@ -55,16 +55,16 @@ CREATE TABLE `filmy` (
 --
 
 INSERT INTO `filmy` (`id`, `tytul`, `gatunek`, `data_dodania`, `ilosc_wypozyczen`, `rezyser`, `rok_premiery`, `okladka`) VALUES
-(1, 'Skazani na Shawshank', 'Dramat', '2025-01-17', 0, 'Frank Darabont', 1994, https://srv82359.seohost.com.pl/img/okladka1.jpg),
-(2, 'Zielona mila', 'Dramat', '2025-01-17', 0, 'Frank Darabont', 1999, https://srv82359.seohost.com.pl/img/okladka2.jpg),
-(3, 'Forrest Gump', 'Komedia', '2025-01-17', 0, 'Robert Zemeckis', 1994, https://srv82359.seohost.com.pl/img/okladka3.jpg),
-(4, 'Ojciec chrzestny', 'Kryminalny', '2025-01-17', 0, 'Francis Ford Coppola', 1972, https://srv82359.seohost.com.pl/img/okladka4.jpg),
-(5, 'Mroczny rycerz', 'Akcja', '2025-01-17', 0, 'Christopher Nolan', 2008, https://srv82359.seohost.com.pl/img/okladka5.jpg),
-(6, 'Władca Pierścieni: Powrót Króla', 'Fantasy', '2025-01-17', 0, 'Peter Jackson', 2003, https://srv82359.seohost.com.pl/img/okladka6.jpg),
-(7, 'Incepcja', 'Science Fiction', '2025-01-17', 0, 'Christopher Nolan', 2010, https://srv82359.seohost.com.pl/img/okladka7.jpg),
-(8, 'Matrix', 'Science Fiction', '2025-01-17', 0, 'Lana Wachowski, Lilly Wachowski', 1999, https://srv82359.seohost.com.pl/img/okladka8.jpg),
-(9, 'Gladiator', 'Historyczny', '2025-01-17', 0, 'Ridley Scott', 2000, https://srv82359.seohost.com.pl/img/okladka9.jpg),
-(10, 'Titanic', 'Dramat', '2025-01-17', 0, 'James Cameron', 1997, https://srv82359.seohost.com.pl/img/okladka10.jpg);
+(1, 'Skazani na Shawshank', 'Dramat', '2025-01-17', 0, 'Frank Darabont', 1994, 'https://srv82359.seohost.com.pl/img/okladka1.jpg'),
+(2, 'Zielona mila', 'Dramat', '2025-01-17', 0, 'Frank Darabont', 1999, 'https://srv82359.seohost.com.pl/img/okladka2.jpg'),
+(3, 'Forrest Gump', 'Komedia', '2025-01-17', 0, 'Robert Zemeckis', 1994, 'https://srv82359.seohost.com.pl/img/okladka3.jpg'),
+(4, 'Ojciec chrzestny', 'Kryminalny', '2025-01-17', 0, 'Francis Ford Coppola', 1972, 'https://srv82359.seohost.com.pl/img/okladka4.jpg'),
+(5, 'Mroczny rycerz', 'Akcja', '2025-01-17', 0, 'Christopher Nolan', 2008, 'https://srv82359.seohost.com.pl/img/okladka5.jpg'),
+(6, 'Władca Pierścieni: Powrót Króla', 'Fantasy', '2025-01-17', 0, 'Peter Jackson', 2003, 'https://srv82359.seohost.com.pl/img/okladka6.jpg'),
+(7, 'Incepcja', 'Science Fiction', '2025-01-17', 0, 'Christopher Nolan', 2010, 'https://srv82359.seohost.com.pl/img/okladka7.jpg'),
+(8, 'Matrix', 'Science Fiction', '2025-01-17', 0, 'Lana Wachowski, Lilly Wachowski', 1999, 'https://srv82359.seohost.com.pl/img/okladka8.jpg'),
+(9, 'Gladiator', 'Historyczny', '2025-01-17', 0, 'Ridley Scott', 2000, 'https://srv82359.seohost.com.pl/img/okladka9.jpg'),
+(10, 'Titanic', 'Dramat', '2025-01-17', 0, 'James Cameron', 1997, 'https://srv82359.seohost.com.pl/img/okladka10.jpg');
 
 -- --------------------------------------------------------
 
