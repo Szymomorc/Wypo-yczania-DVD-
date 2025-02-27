@@ -1,0 +1,67 @@
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100vw;
+	min-height: 500px;
+	height: 80vh;
+}
+
+.header_box {
+	display: flex;
+	position: relative;
+	max-width: 1200px;
+	width: 100%;
+	height: 100%;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+.header_box-left {
+	padding-top: 120px;
+	padding-right: 1rem;
+	display: flex;
+	align-items: start;
+	justify-content: center;
+	flex-direction: column;
+	width: 50%;
+	color: #fff;
+}
+
+.header_box-left h1 {
+	font-size: 4rem;
+	line-height: 5rem;
+	letter-spacing: 3px;
+	margin: 2rem 0;
+}
+
+.header_box-left p {
+	padding: 0.25rem 0;
+	margin: 1rem 0;
+	font-size: 1.8rem;
+}
+
+.header_box-left-btn {
+	font-size: 2.2rem;
+	letter-spacing: 3px;
+	color: #2e627a;
+	font-weight: bold;
+	background-color: #fff;
+	border-radius: 20px;
+	border: none;
+	padding: 0.5rem 2rem;
+	margin: 3rem 0;
+}
+
+.header_box-left-btn:hover {
+	color: #fff;
+	background-color: #033045;
+}
+
+.header_box-right {
+	width: 50%;
+	height: 100%;
+	background-image: url(./DVD-rental.png);
+	background-position: center;
+}

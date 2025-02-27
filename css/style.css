@@ -1,0 +1,29 @@
+@import url('nav.css');
+@import url('header.css');
+@import url('carousel.css');
+@import url('footer.css');
+
+*,
+*::after,
+*::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #2e627a;
+    overflow-x: hidden;
+}
+
+.max-width {
+    width: 100%;
+    max-width: 1200px;
+}
