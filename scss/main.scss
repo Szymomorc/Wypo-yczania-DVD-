@@ -1,0 +1,35 @@
+@import 'colors';
+@import 'components';
+@import 'keyframes';
+
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+html {
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+	scroll-padding-top: 100px;
+}
+
+body {
+	font-family: 'Lato', sans-serif;
+	background-color: $bg-color;
+	overflow-x: hidden;
+}
+
+
+
+@import 'nav';
+@import 'header';
+@import 'new';
+@import './contact';
+@import './footer';
+@import './login';
+
+@import 'medium';
+@import 'large';

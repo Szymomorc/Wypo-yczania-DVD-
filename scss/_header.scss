@@ -1,0 +1,101 @@
+
+.container {
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	margin: auto;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	background-color: $bg-color;
+
+	z-index: -100;
+	overflow: hidden;
+
+	&__item {
+		position: absolute;
+		border-radius: 48%;
+		animation: gradient 10s infinite;
+
+		&-one {
+			height: 55%;
+			width: 70%;
+			background-color: $one;
+			top: -10%;
+			right: 30%;
+			animation-delay: 0.3s;
+		}
+
+		&-two {
+			height: 55%;
+			width: 70%;
+			background-color: $two;
+			top: -5%;
+			left: 45%;
+			animation-delay: 1s;
+		}
+
+		&-three {
+			height: 60%;
+			width: 60%;
+			background-color: $three;
+			top: -30%;
+			left: 20%;
+			animation-delay: 0.5s;
+		}
+	}
+}
+
+.container::after {
+	position: absolute;
+	content: '';
+	height: 100%;
+	width: 100%;
+	backdrop-filter: blur(50px);
+}
+
+.header {
+	width: 100vw;
+	height: 75vh;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+	overflow: hidden;
+
+	&__heading {
+		color: $main-color;
+		font-weight: 300;
+		font-size: 4rem;
+		padding: 2rem;
+
+		&-name {
+			// line-height: 1rem;
+			font-weight: 300;
+			font-size: 2.8rem;
+		}
+
+		&-main {
+			line-height: 4rem;
+			font-weight: bold;
+			font-size: 3.2rem;
+			letter-spacing: 1px;
+			padding-bottom: 0.5rem;
+		}
+
+		&-line {
+			width: 100%;
+			min-height: 2px;
+			background-color: $main-color;
+			border-radius: 15px;
+			margin: 2.5rem 0;
+		}
+
+		&-description {
+			font-size: 1.6rem;
+			line-height: 2.2rem;
+			letter-spacing: 1px;
+		}
+	}
+}

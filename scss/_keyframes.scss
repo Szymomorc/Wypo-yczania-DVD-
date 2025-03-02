@@ -1,0 +1,24 @@
+@keyframes navLinkFade{
+	from{
+		opacity: 0;
+		transform: translateX(-50px);
+	}
+	to{
+		opacity: 1;
+		transform: translateX(0px);
+	}
+}
+
+@keyframes gradient {
+
+	70%{
+		transform: scale(1.6) translateX(-50px) translateY(40px);
+	}
+}
+
+@keyframes largeGradient{
+
+	65%{
+		transform: scale(1.6) translateX(-150px) translateY(100px);
+	}
+}

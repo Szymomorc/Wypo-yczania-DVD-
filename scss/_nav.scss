@@ -1,0 +1,161 @@
+nav {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	width: 100vw;
+	// background-color: #000;
+	backdrop-filter: blur(25px);
+	height: 7rem;
+	z-index: 2137;
+
+	.nav-wrapper {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		position: fixed;
+		top: 0;
+		max-width: 1200px;
+	}
+
+	.nav-leftside{
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.nav_logo {
+		height: 5rem;
+		margin: 1rem 1rem;
+		z-index: 9999;
+	}
+
+	.nav-search{
+		&-bar{
+			min-width: 60%;
+			background-color: rgba(0, 0, 0, 0.2);
+			display: flex;
+			align-items: center;
+			border-radius: 60px;
+			padding: 0.5rem 1rem;
+			backdrop-filter: blur(4px);
+
+			input{
+				background: transparent;
+				flex: 1;
+				border: 0;
+				outline: none;
+				padding: 14px 10px;
+				font-size: 1.4rem;
+				color: $main-color;
+			}
+
+			button{
+				border: 0;
+				border-radius: 50%;
+				height: 4rem;
+				width: 4rem;
+				background-color: $one;
+				cursor: pointer;
+
+				img{
+					width: 50%;
+					height: 50%;
+				}
+			}
+		}
+	}
+
+	.nav-links {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 100vh;
+		width: 100vw;
+		background-color: #000;
+		left: -100%;
+		transition: left 0.2s ease-in;
+
+		padding: 3rem 0rem;
+		margin: 3rem 0rem;
+		z-index: 2136;
+		li {
+			opacity: 0;
+			list-style: none;
+			padding: 0.5em 1em;
+		}
+
+		a {
+			color: $main-color;
+			text-decoration: none;
+			font-size: 2.4rem;
+			font-weight: 100;
+		}
+	}
+
+	.burger {
+		display: block;
+		padding: 0.75rem;
+		margin: 1rem 2rem;
+		background-color: rgb(47, 46, 46);
+		border-radius: 7px;
+		z-index: 9999;
+		div {
+			width: 25px;
+			height: 3px;
+			background-color: rgb(226, 226, 226);
+			margin: 5px;
+			transition: all 0.2s ease;
+		}
+	}
+
+	.nav-active {
+		left: 0;
+	}
+}
+
+.nav-active {
+	transform: translateX(0);
+}
+
+.toggle {
+	.line1 {
+		transform: rotate(-45deg) translate(-5px, 6px);
+	}
+
+	.line2 {
+		opacity: 0;
+	}
+
+	.line3 {
+		transform: rotate(45deg) translate(-5px, -6px);
+	}
+}
+
+// @media (min-width: 768px) {
+// 	nav {
+// 		.nav-links {
+// 			flex-direction: row;
+// 			position: relative;
+// 			width: 35%;
+// 			max-height: 8vh;
+// 			top: 0;
+// 			transform: translateX(0);
+// 			background-color: #5d4954;
+
+// 			li {
+// 				opacity: 1;
+// 			}
+// 		}
+
+// 		.burger {
+// 			display: none;
+// 		}
+// 	}
+// }

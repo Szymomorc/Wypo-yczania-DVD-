@@ -1,0 +1,229 @@
+@media (min-width: 375px){
+	.header{
+		height: 70vh;
+	}
+}
+
+@media (min-width: 768px) {
+	nav {
+		.nav{
+			&-leftside{
+				img{
+					margin: 1rem 2rem;
+				}
+			}
+
+			&-search{
+				margin: 0.5rem 0;
+				&-bar{
+					min-width: 40vw;
+					padding: 0.5rem 1rem;
+		
+					input{
+						padding: 1.8rem 1.4rem;
+						font-size: 1.6rem;
+					}
+		
+					button{
+						display: flex;
+                        align-items: center;
+                        justify-content: center;
+						height: 5rem;
+						width: 5rem;
+		
+					}
+				}
+			}
+		}
+
+		.burger {
+			display: block;
+			margin: 1rem 4rem;
+			padding: 0.5rem;
+			div {
+				width: 40px;
+				height: 4.125px;
+				margin: 6.875px;
+				transition: all 0.2s ease;
+			}
+		}
+
+		.nav-active {
+			transform: translateX(0);
+		}
+	}
+
+	.toggle {
+		.line1 {
+			transform: rotate(-45deg) translate(-6.875px, 8.25px);
+		}
+
+		.line2 {
+			opacity: 0;
+		}
+
+		.line3 {
+			transform: rotate(45deg) translate(-6.875px, -8.25px);
+		}
+	}
+
+	// HEADER
+	.container {
+		z-index: -100;
+
+		&__item {
+			&-one {
+				height: 55%;
+				width: 70%;
+				top: -10%;
+				right: -10%;
+				animation-delay: 0.3s;
+			}
+
+			&-two {
+				height: 55%;
+				width: 50%;
+				top: -5%;
+				left: 70%;
+				animation-delay: 1s;
+			}
+
+			&-three {
+				height: 60%;
+				width: 60%;
+				top: -40%;
+				left: 45%;
+				animation-delay: 0.5s;
+			}
+		}
+	}
+
+	.header {
+		height: 60vh;
+
+		&__heading {
+			padding: 3rem;
+
+			&-name {
+				font-weight: 300;
+				font-size: 4.4rem;
+				letter-spacing: 1px;
+			}
+
+			&-main {
+				font-weight: 400;
+				font-size: 5.6rem;
+				letter-spacing: 3px;
+			}
+
+			&-line {
+				width: 100%;
+				min-height: 2px;
+				background-color: #fff;
+				border-radius: 15px;
+				margin: 3rem 0;
+			}
+
+			&-description {
+				font-family: 'Roboto', sans-serif;
+				font-size: 2rem;
+				line-height: 2.6rem;
+			}
+		}
+	}
+
+	.new, .new2 {
+		padding: 3rem;
+
+		&__wrapper {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+ // LOGIN
+ .header {
+
+
+	&__wrapper {
+		&-login {
+			flex-direction: row;
+			align-items: start;
+			padding-top: 100px;
+		}
+	}
+	&__login {
+		&-form {
+			width: 40vw;
+			input {
+				width: 30%;
+				padding: 14px 20px;
+				font-size: 1.6rem;
+			}
+
+			button {
+				padding: 14px 20px;
+				font-size: 1.6rem;
+			}
+		}
+		&-h1 {
+			margin: 2rem 0;
+			font-size: 3rem;
+		}
+	}
+}
+
+
+	// CONTACT
+
+	.contact {
+		padding: 0;
+		margin: 7rem 3rem 4rem 3rem;
+	
+		&__box {
+			flex-direction: row;
+	
+			&-info {
+				width: 60%;
+	
+				&-description {
+					font-size: 1.6rem;
+					line-height: 2rem;
+				}
+	
+				&-media {
+					display: flex;
+					justify-content: flex-start;
+	
+					&-icon {
+						color: #c7c7c7;
+						font-size: 4.5rem;
+						transition: .3s;
+						margin: 0 6rem 0 0;
+	
+						&:hover{
+							transform: scale(1.25);
+							color: #b09cf8;
+						}
+					}
+				}
+			}
+	
+			&-line {
+				margin: 0 2rem;
+				min-height: 100%;
+				max-width: 2px;
+				border-radius: 8px;
+				background-color: rgb(71, 67, 67);
+			}
+	
+		}
+
+		&-img{
+			width: 45%;
+			height: 45%;
+		}
+	}
+}

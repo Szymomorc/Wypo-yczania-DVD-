@@ -1,0 +1,24 @@
+.footer {
+	position: relative;
+	border-top: rgb(71, 67, 67) solid 2px;
+	margin: 4rem auto;
+	width: 90%;
+	max-width: 1200px;
+
+	img {
+		position: absolute;
+		left: 50%;
+		transform: translateX(-50%);
+		top: -35%;
+		width: 30px;
+		background-color: #000;
+	}
+
+	p {
+		color: white;
+		text-align: center;
+		font-size: 1.4rem;
+		letter-spacing: 2px;
+		padding: 2rem 0rem 1rem 0rem;
+	}
+}

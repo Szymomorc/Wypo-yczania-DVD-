@@ -1,0 +1,56 @@
+a {
+	text-decoration: none;
+}
+
+input,
+button,
+textarea,
+select {
+	font-family: inherit;
+	list-style: none
+}
+
+button {
+	border: none;
+	cursor: pointer;
+}
+
+textarea {
+	resize: vertical;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.wrapper {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 1200px;
+}
+
+.section-heading {
+	text-transform: uppercase;
+	font-weight: 700;
+	margin-bottom: 1.5rem;
+	font-size: 2.2rem;
+	letter-spacing: 2.9px;
+	color: $one;
+}
+
+@media (min-width: 768px) {
+	.section-heading{
+		margin-bottom: 1.5rem;
+		font-size: 3rem;
+		letter-spacing: 3px;
+	}
+}
+
+@media (min-width: 992px) {
+	.section-heading{
+		margin-bottom: 2.5rem;
+		font-size: 3.2rem;
+		letter-spacing: 3px;
+	}
+}

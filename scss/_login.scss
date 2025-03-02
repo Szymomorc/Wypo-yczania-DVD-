@@ -1,0 +1,60 @@
+.header {
+
+
+	&__wrapper {
+		&-login {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+	&__login {
+		&-form {
+			width: 80vw;
+			input {
+				min-width: 80%;
+				background-color: rgba(0, 0, 0, 0.2);
+				display: flex;
+				align-items: center;
+				border-radius: 60px;
+				padding: 0.5rem 1rem;
+				backdrop-filter: blur(4px);
+				flex: 1;
+				border: 1px solid $main-color;
+				padding: 14px 10px;
+				font-size: 1.4rem;
+				color: $main-color;
+			}
+
+			button {
+				min-width: 60%;
+				background-color: $one;
+				border-radius: 60px;
+				padding: 0.5rem 1rem;
+				backdrop-filter: blur(4px);
+				border: 1px solid $main-color;
+				padding: 14px 10px;
+				font-size: 1.4rem;
+				font-weight: bold;
+				color: $main-color;
+			}
+			&-box {
+				margin: 1rem;
+				padding: 1rem;
+			}
+		}
+		&-h1 {
+			margin: 1rem 0;
+			color: $main-color;
+			font-size: 2.5rem;
+		}
+	}
+}
+
+.header__wrapper-login{
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+}

@@ -5,37 +5,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rejestracja i Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://kit.fontawesome.com/c876edd7c5.js" crossorigin="anonymous"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/main.css">
 </head>
+
 <body>
 
-    <h1>Rejestracja</h1>
-    <form action="rejestracja.php" method="POST">
-        <label for="username">Nazwa użytkownika:</label>
-        <input type="text" id="username" name="nazwa" required><br><br>
+    <nav>
+        <div class="wrapper nav-wrapper">
+            <div class="nav-leftside">
+                <img src="./img/DVD.jpg" alt="" class="nav_logo">
+                <div class="nav-search">
+                    <form action="" class="nav-search-bar">
+                        <input type="text" placeholder="Co chciałbyś obejrzeć..." name="q">
+                        <button type="submit"><img src="../img/icons8-search-50 (1).png" alt=""></button>
+                    </form>
+                </div>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="#">Home</a>
+                </li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+    </nav>
 
-        <label for="password">Hasło:</label>
-        <input type="password" id="password" name="password" required><br><br>
+    <header class="header" id="header">
+        <div class="header-bg container">
+            <div class="container">
+                <div class="container__item container__item-one"></div>
+                <div class="container__item container__item-two"></div>
+                <div class="container__item container__item-three"></div>
+            </div>
+        </div>
 
-        <button type="submit" name="submit">Zarejestruj</button>
-    </form>
-    
-    <h1>Logowanie</h1>
-    <form action="login.php" method="POST">
-    <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
+        <div class="wrapper header__wrapper header__wrapper-login">
+            <div class="header__login-form-box">
+                <h1 class="header__login-h1">Rejestracja</h1>
+                <form class="header__login-form" action="rejestracja.php" method="POST">
+                    <input type="text" id="username" name="nazwa" placeholder="Nazwa użytkownika" required><br><br>
 
-        <label for="password">Hasło:</label>
-        <input type="password" id="password" name="password" required><br><br>
+                    <input type="email" id="email" name="email" placeholder="Email" required><br><br>
 
-        <button type="submit" name="login">Zaloguj</button>
-    </form>
+                    <input type="password" id="password" placeholder="Hasło" name="password" required><br><br>
+
+                    <button type="submit" name="submit">Zarejestruj</button>
+                </form>
+            </div>
+
+            <div class="header__login-form-box">
+                <h1 class="header__login-h1">Logowanie</h1>
+                <form class="header__login-form" action="login.php" method="POST">
+                    <input type="email" id="email" name="email" placeholder="Email" required><br><br>
+
+                    <input type="password" id="password" name="password" placeholder="Hasło" required><br><br>
+
+                    <button type="submit" name="login">Zaloguj</button>
+                </form>
+            </div>
+        </div>
+
+
+    </header>
+
+
 </body>
+
 </html>
-
-
-
-
-
