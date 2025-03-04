@@ -44,7 +44,6 @@ CREATE TABLE `filmy` (
   `tytul` varchar(100) NOT NULL,
   `gatunek` varchar(50) NOT NULL,
   `data_dodania` date NOT NULL DEFAULT curdate(),
-  `ilosc_wypozyczen` int(11) NOT NULL DEFAULT 0,
   `rezyser` varchar(100) DEFAULT NULL,
   `rok_premiery` int(11) NOT NULL,
   `okladka` VARCHAR(255) DEFAULT NULL
