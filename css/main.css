@@ -155,6 +155,12 @@ nav .nav-search-bar button img {
   width: 50%;
   height: 50%;
 }
+nav .filters {
+  display: none;
+}
+.hidden {
+  display: none;
+}
 nav .nav-links {
   display: flex;
   flex-direction: column;
@@ -524,6 +530,50 @@ nav .nav-active {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.panel {
+  position: relative;
+  height: 70vh;
+  width: 70vw;
+  margin-left: auto;
+  margin-right: auto;
+  top: 10rem;
+}
+.panel-header {
+  position: absolute;
+}
+.panel-footer {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.panel__box {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  color: white;
+  font-size: 17px;
+}
+.panel__box-sidebar {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.panel__box-sidebar-nick {
+  margin-bottom: 30px;
+  font-size: 22px;
+}
+.panel__box-sidebar-option {
+  margin-bottom: 10px;
+}
+.panel__box-main {
+  height: 100%;
+  width: 70%;
+  overflow: auto;
 }
 
 @media (min-width: 375px) {
