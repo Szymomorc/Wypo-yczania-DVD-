@@ -81,56 +81,77 @@ if ($user) {
                 <div class="container__item container__item-three"></div>
             </div>
         </div>
-        </div>
-
-    </header>
-    <section class="new" id="offer">
-    <h2 class="new__heading section-heading">WYNIKI WYSZUKIWANIA: '<?php echo htmlspecialchars($q); ?>'</h2>
-    <div class="carousel-container">
-        <button class="carousel-button left-button">&#10094;</button>
-        <div class="carousel-wrapper">
+        <section class="new" id="offer">
             <?php
-            // Pobieramy zapytanie z formularza
-            $q = isset($_GET['q']) ? mysqli_real_escape_string($mysqli, $_GET['q']) : '';
-
-            // Jeśli coś zostało wpisane w wyszukiwarkę:
-            if(!empty($q)){
-                // Zapytanie bez sortowania po dacie
-                $query = "SELECT * FROM `filmy` WHERE `tytul` LIKE '%$q%' GROUP BY `tytul`";
-                $result = mysqli_query($mysqli, $query);
-
-                // Jeśli wynik jest większy od 0 to:
-                if(mysqli_num_rows($result) > 0){
-                    while ($film = mysqli_fetch_assoc($result)){
-                        echo '<div class="carousel-item">';
-                        // pokazuje zdjęcie jeśli jest
-                        if(!empty($film['okladka'])){
-                            echo '<a href="film.php?id='. htmlspecialchars($film['id']).'">';
-                            echo '<img src="'. htmlspecialchars($film['okladka']) .'" alt="'. htmlspecialchars($film['tytul']) .'" class="carousel-item-img">';
-                            echo '</a>';
-                        }
-                        echo '<p class="carousel-item-title">'. htmlspecialchars($film['tytul']).'</p>';
-                        echo '<p class="carousel-item-director">' . htmlspecialchars($film['rezyser']) .'</p>';
-                        if (isset($_SESSION['user'])) {
-                            // Użytkownik jest zalogowany
-                            echo '<button class="carousel-item-btn">WYPOŻYCZ</button>'; // Przycisk wypożycz
-                        }
-                        echo '</div>';
-                    }
-                } else {
-                    // Brak wyników
-                    echo "<p class='no-results'>Brak wyników dla: '" . htmlspecialchars($q) . "'</p>";
-                }
-            } else {
-                echo "<p class='no-results'>Wpisz coś w wyszukiwarkę.</p>";
-            }
+                // Pobieramy zapytanie z formularza na początku
+                $q = isset($_GET['q']) ? mysqli_real_escape_string($mysqli, $_GET['q']) : '';
             ?>
-        </div>
-        <button class="carousel-button right-button">&#10095;</button>
-    </div>
-</section>
 
-    
+            <h2 class="new__heading section-heading2">
+                WYNIKI WYSZUKIWANIA DLA: 
+                <?php
+                // Wyświetlamy zapytanie tylko, jeśli nie jest puste
+                if (!empty($q)) {
+                    echo htmlspecialchars($q);
+                } else {
+                    echo "WSZYSTKIE FILMY ";
+                }
+                ?>
+            </h2>
+            <div class="carousel-container">
+                <button class="carousel-button left-button">&#10094;</button>
+                <div class="carousel-wrapper">
+                    <?php
+                    if(!empty($q)){
+                        $query = "SELECT * FROM `filmy` WHERE `tytul` LIKE '%$q%' GROUP BY `tytul`";
+                        $result = mysqli_query($mysqli, $query);
+                        if(mysqli_num_rows($result) > 0){
+                            while ($film = mysqli_fetch_assoc($result)){
+                                echo '<div class="carousel-item">';
+                                if(!empty($film['okladka'])){
+                                    echo '<a href="film.php?id='. htmlspecialchars($film['id']).'">';
+                                    echo '<img src="'. htmlspecialchars($film['okladka']) .'" alt="'. htmlspecialchars($film['tytul']) .'" class="carousel-item-img">';
+                                    echo '</a>';
+                                }
+                                echo '<p class="carousel-item-title">'. htmlspecialchars($film['tytul']).'</p>';
+                                echo '<p class="carousel-item-director">' . htmlspecialchars($film['rezyser']) .'</p>';
+                                if (isset($_SESSION['user'])) {
+                                    // Użytkownik jest zalogowany
+                                    echo '<button class="carousel-item-btn">WYPOŻYCZ</button>'; // Przycisk wypożycz
+                                }
+                                echo '</div>';
+                            }
+                        } else {
+                            echo '<h2 class="new__heading section-heading3">Brak wyników do wyświetlenia</h2>';
+                        }
+                    } else {
+                            $query = "SELECT * FROM `filmy`";
+                            $result = mysqli_query($mysqli, $query);
+                            if(mysqli_num_rows($result) > 0){
+                                while ($film = mysqli_fetch_assoc($result)){
+                                    echo '<div class="carousel-item">';
+                                    if(!empty($film['okladka'])){
+                                        echo '<a href="film.php?id='. htmlspecialchars($film['id']).'">';
+                                        echo '<img src="'. htmlspecialchars($film['okladka']) .'" alt="'. htmlspecialchars($film['tytul']) .'" class="carousel-item-img">';
+                                        echo '</a>';
+                                    }
+                                    echo '<p class="carousel-item-title">'. htmlspecialchars($film['tytul']).'</p>';
+                                    echo '<p class="carousel-item-director">' . htmlspecialchars($film['rezyser']) .'</p>';
+                                    if (isset($_SESSION['user'])) {
+                                        // Użytkownik jest zalogowany
+                                        echo '<button class="carousel-item-btn">WYPOŻYCZ</button>'; // Przycisk wypożycz
+                                    }
+                                    echo '</div>';
+                                }
+                        }
+                    }
+                    ?>
+                </div>
+                <button class="carousel-button right-button">&#10095;</button>
+            </div>
+        </section>
+    </header>
+    <section class="spacing"></section>
     <footer class="footer">
         <div class="wrapper"><img src="./img/DVD.jpg" alt="">
             <p class="footer__bottom-text">&copy; <span class="footer__year"></span> DVD RENTAL STORE</p>
