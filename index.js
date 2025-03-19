@@ -36,7 +36,6 @@ function initializeCarousel(wrapperSelector, leftButtonSelector, rightButtonSele
 
     carouselWrapper.style.setProperty('--per-view', perView);
 
-    // Jeśli jest więcej filmów niż perView, powielamy, w przeciwnym razie NIE powielamy
     if (carouselLength > perView) {
         for (let i = 0; i < perView; i++) {
             carouselWrapper.insertAdjacentHTML('beforeend', carouselItems[i].outerHTML);
