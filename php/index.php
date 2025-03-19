@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="pl">
 <?php 
-//wazne jest tylko część kodu z php
 include("config.php"); // Połączenie z bazą danych 
 session_start(); // Rozpoczęcie sesji 
 ?>
+<!DOCTYPE html>
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,7 +16,7 @@ session_start(); // Rozpoczęcie sesji
         rel="stylesheet">
     <script src="https://kit.fontawesome.com/c876edd7c5.js" crossorigin="anonymous"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body class="main-page">
@@ -27,9 +26,9 @@ session_start(); // Rozpoczęcie sesji
             <div class="nav-leftside">
                 <img src="./img/DVD.jpg" alt="" class="nav_logo">
                 <div class="nav-search">
-                   <form action="wyniki.php" method="GET" class="nav-search-bar">
+                    <form action="wyniki.php" method="GET" class="nav-search-bar">
                         <input type="text" placeholder="Co chciałbyś obejrzeć..." name="q">
-                        <button type="submit"><img src="./img/icons8-search-50 (1).png" alt=""></button>
+                        <button type="submit"><img src="./img/icons8-search-50.png" alt=""></button>
                     </form>
                 </div>
             </div>
@@ -38,7 +37,7 @@ session_start(); // Rozpoczęcie sesji
                     <a href="#">Home</a>
                 </li>
                 <li>
-                    <a href="#offer">Panel</a>
+                    <a href="panel.php">Panel</a>
                 </li>
                 <li>
                 <?php
@@ -86,55 +85,15 @@ session_start(); // Rozpoczęcie sesji
 
 
     </header>
-
+    
     <section class="new" id="offer">
-    <h2 class="new__heading section-heading">OSTATNIO DODANE FILMY</h2>
-    <div class="carousel-container">
-        <button class="carousel-button left-button">&#10094;</button>
-        <div class="carousel-wrapper">
-            <?php
-            // Wykonanie zapytania w bazie danych
-            $query = "SELECT * FROM `filmy` ORDER by data_dodania";
-            $result = mysqli_query($mysqli, $query);
-
-            // Jeśli wynik jest większy od 0 to:
-            if(mysqli_num_rows($result) > 0){
-                while ($film = mysqli_fetch_assoc($result)){
-                    echo '<div class="carousel-item">';
-                    // pokazuje zdjęcie jeśli jest
-                    // jak nie ma pokazuje tytul
-                    if(!empty($film['okladka'])){
-                        echo '<img src="image.php?id='. htmlspecialchars($film['id']).'" alt="'.htmlspecialchars($film['tytul']).'" class="carousel-item-img">';
-                    }
-                    echo '<p class="carousel-item-title">'. htmlspecialchars($film['tytul']).'</p>';
-                    echo '<p class="carousel-item-director">' . htmlspecialchars($film['rezyser']) .'</p>';
-                    if (isset($_SESSION['user'])) {
-                        // Użytkownik jest zalogowany
-                        echo '<button class="carousel-item-btn">WYPOŻYCZ</button>'; // Przycisk wyporzyć
-                    }
-                    echo '</div>';
-                }
-            }else{
-                echo "Brak filmów w bazie.";
-            }
-            ?>
-        </div>
-        <button class="carousel-button right-button">&#10095;</button>
-    </div>
-    </section>
-
-    <section class="new2">
-        <h2 class="new2__heading section-heading">NAJCZĘŚCIEJ WYPOŻYCZANE FILMY</h2>
+        <h2 class="new__heading section-heading">OSTATNIO DODANE FILMY</h2>
         <div class="carousel-container">
-            <button class="carousel-button left-button2">&#10094;</button>
-            <div class="carousel-wrapper2">
+            <button class="carousel-button left-button">&#10094;</button>
+            <div class="carousel-wrapper">
                 <?php
                 // Wykonanie zapytania w bazie danych
-                $query = "SELECT filmy.*, COUNT(wypozyczenia.film_id) AS wypozyczenia_count 
-                          FROM filmy 
-                          LEFT JOIN wypozyczenia ON filmy.id = wypozyczenia.film_id 
-                          GROUP BY filmy.id 
-                          ORDER BY wypozyczenia_count DESC";
+                $query = "SELECT * FROM `filmy` ORDER by data_dodania";
                 $result = mysqli_query($mysqli, $query);
 
                 // Jeśli wynik jest większy od 0 to:
@@ -144,7 +103,47 @@ session_start(); // Rozpoczęcie sesji
                         // pokazuje zdjęcie jeśli jest
                         // jak nie ma pokazuje tytul
                         if(!empty($film['okladka'])){
-                            echo '<img src="image.php?id='. htmlspecialchars($film['id']).'" alt="'.htmlspecialchars($film['tytul']).'" class="carousel-item-img">';
+                            echo '<a href="film.php?id='. htmlspecialchars($film['id']).'">';
+                            echo '<img src="'. htmlspecialchars($film['okladka']) .'" alt="'. htmlspecialchars($film['tytul']) .'" class="carousel-item-img">';
+                            echo '</a>';
+                        }
+                        echo '<p class="carousel-item-title">'. htmlspecialchars($film['tytul']).'</p>';
+                        echo '<p class="carousel-item-director">' . htmlspecialchars($film['rezyser']) .'</p>';
+                        if (isset($_SESSION['user'])) {
+                            // Użytkownik jest zalogowany
+                            echo '<button class="carousel-item-btn">WYPOŻYCZ</button>'; // Przycisk wyporzyć
+                        }
+                        echo '</div>';
+                    }
+                }else{
+                    echo "Brak filmów w bazie.";
+                }
+                ?>
+            </div>
+            <button class="carousel-button right-button">&#10095;</button>
+        </div>
+    </section>
+
+    <section class="new2">
+        <h2 class="new2__heading section-heading">NAJCZĘŚCIEJ WYPOŻYCZANE FILMY</h2>
+        <div class="carousel-container">
+            <button class="carousel-button left-button2">&#10094;</button>
+            <div class="carousel-wrapper2">
+                <?php
+                // Wykonanie zapytania w bazie danych
+                $query = "SELECT filmy.*, COUNT(wypozyczenia.film_id) AS wypozyczenia_count FROM filmy LEFT JOIN wypozyczenia ON filmy.id = wypozyczenia.film_id GROUP BY filmy.id ORDER BY wypozyczenia_count DESC";
+                $result = mysqli_query($mysqli, $query);
+
+                // Jeśli wynik jest większy od 0 to:
+                if(mysqli_num_rows($result) > 0){
+                    while ($film = mysqli_fetch_assoc($result)){
+                        echo '<div class="carousel-item">';
+                        // pokazuje zdjęcie jeśli jest
+                        // jak nie ma pokazuje tytul
+                        if(!empty($film['okladka'])){
+                            echo '<a href="film.php?id='. htmlspecialchars($film['id']).'">';
+                            echo '<img src="'. htmlspecialchars($film['okladka']) .'" alt="'. htmlspecialchars($film['tytul']) .'" class="carousel-item-img">';
+                            echo '</a>';
                         }
                         echo '<p class="carousel-item-title">'. htmlspecialchars($film['tytul']).'</p>';
                         echo '<p class="carousel-item-director">' . htmlspecialchars($film['rezyser']) .'</p>';
