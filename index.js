@@ -1,3 +1,33 @@
+const burger = document.querySelector('.burger');
+const nav = document.querySelector('.nav-links');
+const navLinks = document.querySelectorAll('.nav-links li');
+
+
+const navSlide = () => {
+
+
+    burger.addEventListener('click', () => {
+        // toggle nav
+        nav.classList.toggle('nav-active');
+
+
+        // animate links
+        navLinks.forEach((link, index) => {
+            if (link.style.animation) {
+                link.style.animation = ''
+            } else {
+                link.style.animation = `navLinkFade 0.3s ease forwards ${index / 7 + 0.1}s`
+            }
+        });
+
+        // burger animation
+
+        burger.classList.toggle('toggle');
+    })
+}
+
+navSlide()
+
 function initializeCarousel(wrapperSelector, leftButtonSelector, rightButtonSelector, perView) {
     const carouselWrapper = document.querySelector(wrapperSelector);
     const carouselItems = document.querySelectorAll(`${wrapperSelector} > *`);
@@ -5,8 +35,12 @@ function initializeCarousel(wrapperSelector, leftButtonSelector, rightButtonSele
     let totalScroll = 0;
 
     carouselWrapper.style.setProperty('--per-view', perView);
-    for (let i = 0; i < perView; i++) {
-        carouselWrapper.insertAdjacentHTML('beforeend', carouselItems[i].outerHTML);
+
+    // Jeśli jest więcej filmów niż perView, powielamy, w przeciwnym razie NIE powielamy
+    if (carouselLength > perView) {
+        for (let i = 0; i < perView; i++) {
+            carouselWrapper.insertAdjacentHTML('beforeend', carouselItems[i].outerHTML);
+        }
     }
 
     function updateCarousel() {
@@ -30,6 +64,5 @@ function initializeCarousel(wrapperSelector, leftButtonSelector, rightButtonSele
         updateCarousel();
     });
 }
-
 initializeCarousel('.carousel-wrapper', '.left-button', '.right-button', 4);
 initializeCarousel('.carousel-wrapper2', '.left-button2', '.right-button2', 4);
