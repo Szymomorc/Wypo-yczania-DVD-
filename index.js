@@ -63,5 +63,9 @@ function initializeCarousel(wrapperSelector, leftButtonSelector, rightButtonSele
         updateCarousel();
     });
 }
+document.getElementById('resetFilters').addEventListener('click', function() {
+    document.querySelectorAll('.search-filters input, .search-filters select').forEach(el => el.value = '');
+    document.querySelector('input[name="q"]').value = ''; 
+});
 initializeCarousel('.carousel-wrapper', '.left-button', '.right-button', 4);
 initializeCarousel('.carousel-wrapper2', '.left-button2', '.right-button2', 4);
