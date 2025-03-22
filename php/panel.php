@@ -36,6 +36,7 @@ $dane = $result->fetch_assoc();
                     <form action="" class="nav-search-bar">
                         <input type="text" placeholder="Co chciałbyś obejrzeć..." name="q">
                         <button type="submit"><img src="./img/icons8-search-50.png" alt=""></button>
+                        <button type="submit"><img src="./img/filter-32.png" alt=""></button>
                     </form>
                 </div>
             </div>
