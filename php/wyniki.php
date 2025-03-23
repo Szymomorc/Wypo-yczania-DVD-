@@ -58,10 +58,6 @@ if ($user) {
                                 }
                                 ?>
                             </select>
-
-                            <input type="number" name="rok_premiery" placeholder="Rok premiery" 
-                                value="<?php echo isset($_GET['rok_premiery']) ? htmlspecialchars($_GET['rok_premiery']) : ''; ?>">
-
                             <select name="gatunek">
                                 <option value="">Wybierz gatunek</option>
                                 <?php
@@ -73,6 +69,8 @@ if ($user) {
                                 }
                                 ?>
                             </select>
+                            <input type="number" name="rok_premiery" placeholder="Rok premiery" 
+                                value="<?php echo isset($_GET['rok_premiery']) ? htmlspecialchars($_GET['rok_premiery']) : ''; ?>">
                         </div>
                     </form>
                     
