@@ -14,17 +14,46 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/main.css">
 </head>
+<style>
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
 
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    height:30px;
+    width:30px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    min-width: 10% !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-password img {
+    width: 24px;
+    height: 24px;
+}
+
+</style>
 <body>
 
     <nav>
         <div class="wrapper nav-wrapper">
             <div class="nav-leftside">
-                <img src="./img/DVD.jpg" alt="" class="nav_logo">
+            <a href="./index.php"><img src="./img/DVD.jpg" alt="" class="nav_logo"></a>
                 <div class="nav-search">
                     <form action="wyniki.php" method="GET" class="nav-search-bar">
                         <input type="text" placeholder="Co chciałbyś obejrzeć..." name="q">
-                        <button type="submit"><img src="./img/icons8-search-50.png" alt=""></button>
+                        <button type="submit"><img src="../img/icons8-search-50.png" alt=""></button>
                         <button type="submit"><img src="./img/filter-32.png" alt=""></button>
                     </form>
                 </div>
@@ -60,8 +89,14 @@
 
                     <input type="email" id="email" name="email" placeholder="Email" required><br><br>
 
-                    <input type="password" id="password" placeholder="Hasło" name="password" required><br><br>
-
+                    <div class="password-container">
+                        <input type="password" id="password" placeholder="Hasło" name="password" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('password', this)">
+                        <img src="./img/eye.png" alt="Pokaż hasło">
+                        </button>
+                    </div>
+                    <br>
+                    <br>
                     <button type="submit" name="submit">Zarejestruj</button>
                 </form>
             </div>
@@ -71,7 +106,15 @@
                 <form class="header__login-form" action="login.php" method="POST">
                     <input type="email" id="email" name="email" placeholder="Email" required><br><br>
 
-                    <input type="password" id="password" name="password" placeholder="Hasło" required><br><br>
+                    <div class="password-container">
+                        <input type="password" id="login_password" placeholder="Hasło" name="login_password" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword('login_password', this)">
+                        <img src="./img/eye.png" alt="Pokaż hasło">
+                        </button>
+                    </div><br><br>
+
+                    <p><a href="reset_password.php">Nie pamiętasz hasła</a></p>
+                    <br><br>
 
                     <button type="submit" name="login">Zaloguj</button>
                 </form>
@@ -81,7 +124,19 @@
 
     </header>
 
-
+<script>
+    function togglePassword(fieldId, button) {
+        let passwordField = document.getElementById(fieldId);
+        let img = button.querySelector("img");
+        
+        if (passwordField.type === "password") {
+        passwordField.type = "text";
+        img.src = "./img/eye-closed.png"; // Dodaj drugą ikonę np. zamknięte oko
+        } else {
+        passwordField.type = "password";
+        img.src = "./img/eye.png";
+        }
+    }
+</script>
 </body>
-
 </html>

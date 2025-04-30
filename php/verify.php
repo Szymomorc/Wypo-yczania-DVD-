@@ -1,19 +1,30 @@
 <?php
 include("config.php");
-
+header('Content-Type: text/html; charset=utf-8');
+$alert="";
+$token=$_GET['token'];
 if(isset($_GET['token'])){
-    $query= "Select * From `uzytkownicy` WHERE token='{$token}' AND confirmed=0";
-    $res= mysqli_query($mysqli, $query);
+    $token = $_GET['token'];
+    $query= "Select * From `uzytkownicy` WHERE token=? AND confirmed=0";
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param("s", $token);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-    if($user = mysqli_fetch_assoc($res)){
-    $update = "UPDATE `uzytkownicy` SET confirmed=1, token=NULL WHERE id={$user['id']}";
-    mysqli_query($mysqli, $update);
+    if($user = $result->fetch_assoc()){
+        $update = "UPDATE `uzytkownicy` SET confirmed=1, token=NULL WHERE id=?";
+        $stmt_update = $mysqli->prepare($update);
+        $stmt_update->bind_param("i", $user['id']);
+        $stmt_update->execute();
 
-    echo " Rejestracja potwierdona. Możesz się teraz zalogować.";
+        $alert=" Rejestracja potwierdzona. Możesz się teraz zalogować.";
     }else{
-        echo "Nieprawidłowy lub wygasł token";       
+        $alert="Nieprawidłowy lub wygasły token";       
     }
 }else{
-    echo "Brak tokena.";
+    $alert="Brak tokena.";
 }
+if (isset($alert) && $alert != "") {
+    echo "<script>alert('$alert'); window.location.href='zaloguj.html';</script>";
+} 
 ?>

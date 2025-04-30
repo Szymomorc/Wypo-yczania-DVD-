@@ -1,6 +1,20 @@
 <?php 
 include("config.php"); // Połączenie z bazą danych 
 session_start(); // Rozpoczęcie sesji 
+$user = $_SESSION['user'];
+
+$query = "SELECT COUNT(*) as zalegle 
+          FROM wypozyczenia 
+          JOIN uzytkownicy ON wypozyczenia.uzytkownik_id = uzytkownicy.id 
+          WHERE uzytkownicy.email = ? 
+            AND wypozyczenia.zwrot = 0 
+            AND wypozyczenia.data_zwrotu < CURDATE()";
+$stmt = $mysqli->prepare($query);
+$stmt->bind_param("s", $user);
+$stmt->execute();
+$result = $stmt->get_result();
+$data = $result->fetch_assoc();
+$maZalegle = $data['zalegle'] > 0;
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -20,6 +34,23 @@ session_start(); // Rozpoczęcie sesji
 </head>
 
 <body class="main-page">
+    <?php if ($maZalegle): ?>
+        <!-- Duży modal na środek -->
+        <div id="zalegleModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Uwaga!</h2>
+            <p>Masz zaległe filmy do zwrotu. Sprawdź swoje wypożyczenia!</p>
+        </div>
+        </div>
+
+        <!-- Mały powiadomieniowy box w rogu -->
+        <div id="zaleglePopup" class="popup hidden">
+        <span class="popup-close">&times;</span>
+        <p>Masz zaległe filmy!</p>
+        <a href="panel.php">Zobacz</a>
+        </div>
+    <?php endif; ?>
 
     <nav>
         <div class="wrapper nav-wrapper">
@@ -45,7 +76,7 @@ session_start(); // Rozpoczęcie sesji
                     //Sprawdza czy jest zalogowany jeśli jest to:
                     if (isset($_SESSION['user'])) {
                         // Użytkownik jest zalogowany
-                        echo '<a href="logout.php" >WYLOGUJ</a>'; // Przycisk wylogowania
+                        echo '<a <a href="#" onclick="logoutUser()">WYLOGUJ</a>'; // Przycisk wylogowania
                     } else {
                         // Użytkownik nie jest zalogowany
                         echo '<a href="zaloguj.html">LOGOWANIE</a>'; // Przycisk logowania
@@ -93,16 +124,15 @@ session_start(); // Rozpoczęcie sesji
             <button class="carousel-button left-button">&#10094;</button>
             <div class="carousel-wrapper">
                 <?php
-                // Wykonanie zapytania w bazie danych
-                $query = "SELECT * FROM `filmy` ORDER by data_dodania";
+                
+                $query = "SELECT * FROM `filmy` ORDER by data_dodania DESC";
                 $result = mysqli_query($mysqli, $query);
 
-                // Jeśli wynik jest większy od 0 to:
+                
                 if(mysqli_num_rows($result) > 0){
                     while ($film = mysqli_fetch_assoc($result)){
                         echo '<div class="carousel-item">';
-                        // pokazuje zdjęcie jeśli jest
-                        // jak nie ma pokazuje tytul
+                        
                         if(!empty($film['okladka'])){
                             echo '<a href="film.php?id='. htmlspecialchars($film['id']).'">';
                             echo '<img src="'. htmlspecialchars($film['okladka']) .'" alt="'. htmlspecialchars($film['tytul']) .'" class="carousel-item-img">';
@@ -112,12 +142,12 @@ session_start(); // Rozpoczęcie sesji
                         echo '<p class="carousel-item-director">' . htmlspecialchars($film['rezyser']) .'</p>';
                         if (isset($_SESSION['user'])) {
                             // Użytkownik jest zalogowany
-                            echo '<button class="carousel-item-btn">WYPOŻYCZ</button>'; // Przycisk wyporzyć
+                            echo '<button onclick="wypozyczFilm(' . htmlspecialchars($film['id']) . ')" class="carousel-item-btn">WYPOŻYCZ</button>'; // Przycisk wyporzyć
                         }
                         echo '</div>';
                     }
                 }else{
-                    echo "Brak filmów w bazie.";
+                    echo "<script>alert('$alert'); window.location.href='index.php';</script>";
                 }
                 ?>
             </div>
@@ -150,12 +180,12 @@ session_start(); // Rozpoczęcie sesji
                         echo '<p class="carousel-item-director">' . htmlspecialchars($film['rezyser']) .'</p>';
                         if (isset($_SESSION['user'])) {
                             // Użytkownik jest zalogowany
-                            echo '<button class="carousel-item-btn">WYPOŻYCZ</button>'; // Przycisk wyporzyć
+                            echo '<button onclick="wypozyczFilm(' . htmlspecialchars($film['id']) . ')" class="carousel-item-btn">WYPOŻYCZ</button>'; // Przycisk wyporzyć
                         }
                         echo '</div>';
                     }
                 }else{
-                    echo "Brak filmów w bazie.";
+                    echo "<script>alert('$alert'); window.location.href='index.php';</script>";
                 }
                 ?>
             </div>
@@ -200,6 +230,58 @@ session_start(); // Rozpoczęcie sesji
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="./js/index.js"></script>
+    <script>
+    function wypozyczFilm(filmID) {
+        fetch('wyporzycz.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'film_id=' + encodeURIComponent(filmID)
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data); // Wyświetlenie odpowiedzi z serwera
+        })
+        .catch(error => {
+            console.error('Błąd:', error);
+            alert('Wystąpił błąd podczas wypożyczania filmu.');
+        });
+    }
+    </script>
+              
+   <script>
+        document.addEventListener("DOMContentLoaded", function () {
+        const hasSeen = localStorage.getItem('zalegleModalSeen');
+        const modal = document.getElementById('zalegleModal');
+        const popup = document.getElementById('zaleglePopup');
+
+        if (!hasSeen && modal) {
+            modal.classList.remove('hidden');
+
+            modal.querySelector(".close-btn").addEventListener("click", () => {
+            modal.classList.add('hidden');
+            localStorage.setItem('zalegleModalSeen', 'true');
+            });
+        } else if (popup) {
+            popup.classList.remove('hidden');
+
+            popup.querySelector(".popup-close").addEventListener("click", () => {
+            popup.classList.add('hidden');
+            // Nie zapisujemy nic do localStorage – pojawi się znów przy kolejnym wejściu
+            });
+        }
+        });
+    </script>
+
+    <script> //Popup po zalogowaniu
+        function logoutUser() {
+            localStorage.removeItem('zalegleModalSeen');
+            setTimeout(() => {
+                window.location.href = 'logout.php';
+            }, 100);
+        }
+    </script>
 </body>
 
 </html>

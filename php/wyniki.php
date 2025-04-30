@@ -1,7 +1,7 @@
 <?php 
 include("config.php"); 
 session_start(); 
-
+header('Content-Type: text/html; charset=utf-8');
 $user = isset($_SESSION['user']) ? $_SESSION['user'] : null;
 
 
@@ -35,7 +35,7 @@ if ($user) {
     <nav>
         <div class="wrapper nav-wrapper">
             <div class="nav-leftside">
-                <img src="./img/DVD.jpg" alt="" class="nav_logo">
+                <a href="./index.php"><img src="./img/DVD.jpg" alt="" class="nav_logo"></a>
                 <div class="nav-search">
                     <form action="wyniki.php" method="GET">
                         <div class="nav-search-bar">
@@ -88,7 +88,7 @@ if ($user) {
                     //Sprawdza czy jest zalogowany jeśli jest to:
                     if (isset($_SESSION['user'])) {
                         // Użytkownik jest zalogowany
-                        echo '<a href="logout.php" >WYLOGUJ</a>'; // Przycisk wylogowania
+                        echo '<a href="#" onclick="logoutUser()" >WYLOGUJ</a>'; // Przycisk wylogowania
                     } else {
                         // Użytkownik nie jest zalogowany
                         echo '<a href="zaloguj.html">LOGOWANIE</a>'; // Przycisk logowania
@@ -112,98 +112,99 @@ if ($user) {
             </div>
         </div>
     </header>
-<div class="new" id="offer">
-            <?php
-                $q = isset($_GET['q']) ? mysqli_real_escape_string($mysqli, $_GET['q']) : '';
-                $rezyser = isset($_GET['rezyser']) ? mysqli_real_escape_string($mysqli, $_GET['rezyser']) : '';
-                $rok_premiery = isset($_GET['rok_premiery']) ? mysqli_real_escape_string($mysqli, $_GET['rok_premiery']) : '';
-                $gatunek = isset($_GET['gatunek']) ? mysqli_real_escape_string($mysqli, $_GET['gatunek']) : '';
-            ?>
-            <h2 class="new__heading section-heading2">
-                WYNIKI WYSZUKIWANIA DLA: 
+    <div class="new" id="offer">
                 <?php
-                // Tworzymy zmienną, która będzie przechowywać wszystkie elementy do wyświetlenia
-                $search_terms = [];
-
-                // Sprawdzamy, czy tytuł jest wprowadzony
-                if (!empty($q)) {
-                    $search_terms[] = htmlspecialchars($q);
-                }
-
-                // Sprawdzamy, czy reżyser jest wprowadzony
-                if (!empty($rezyser)) {
-                    $search_terms[] = htmlspecialchars($rezyser);
-                }
-
-                // Sprawdzamy, czy rok premiery jest wprowadzony
-                if (!empty($rok_premiery)) {
-                    $search_terms[] = htmlspecialchars($rok_premiery);
-                }
-
-                // Sprawdzamy, czy gatunek jest wprowadzony
-                if (!empty($gatunek)) {
-                    $search_terms[] = htmlspecialchars($gatunek);
-                }
-
-                // Łączymy wszystkie elementy w jeden ciąg, oddzielając je przecinkami
-                if (count($search_terms) > 0) {
-                    echo implode(', ', $search_terms);
-                } else {
-                    echo "WSZYSTKIE FILMY"; // Jeśli nic nie jest wprowadzone, wyświetlamy "WSZYSTKIE FILMY"
-                }
+                    $q = isset($_GET['q']) ? mysqli_real_escape_string($mysqli, $_GET['q']) : '';
+                    $rezyser = isset($_GET['rezyser']) ? mysqli_real_escape_string($mysqli, $_GET['rezyser']) : '';
+                    $rok_premiery = isset($_GET['rok_premiery']) ? mysqli_real_escape_string($mysqli, $_GET['rok_premiery']) : '';
+                    $gatunek = isset($_GET['gatunek']) ? mysqli_real_escape_string($mysqli, $_GET['gatunek']) : '';
                 ?>
-            </h2>
-
-            <div class="carousel-container">
-                <button class="carousel-button left-button">&#10094;</button>
-                <div class="carousel-wrapper">
+                <h2 class="new__heading section-heading2">
+                    WYNIKI WYSZUKIWANIA DLA: 
                     <?php
-                        $query = "SELECT * FROM `filmy` WHERE 1"; // Zmieniamy to, by zapytanie zawsze zwracało wyniki, niezależnie od tego, czy tytuł jest pusty
+                    // Tworzymy zmienną, która będzie przechowywać wszystkie elementy do wyświetlenia
+                    $search_terms = [];
 
-                        if (!empty($q)) {
-                            $query .= " AND `tytul` LIKE '%$q%'";
-                        }
-                        if (!empty($rezyser)) {
-                            $query .= " AND `rezyser` LIKE '$rezyser'";
-                        }
+                    // Sprawdzamy, czy tytuł jest wprowadzony
+                    if (!empty($q)) {
+                        $search_terms[] = htmlspecialchars($q);
+                    }
 
-                        if (!empty($rok_premiery)) {
-                            $query .= " AND `rok_premiery` = '$rok_premiery%'";
-                        }
+                    // Sprawdzamy, czy reżyser jest wprowadzony
+                    if (!empty($rezyser)) {
+                        $search_terms[] = htmlspecialchars($rezyser);
+                    }
 
-                        if (!empty($gatunek)) {
-                            $query .= " AND `gatunek` = '$gatunek'";
-                        }
-                        $query .= " GROUP BY `tytul`";
+                    // Sprawdzamy, czy rok premiery jest wprowadzony
+                    if (!empty($rok_premiery)) {
+                        $search_terms[] = htmlspecialchars($rok_premiery);
+                    }
 
-                        $result = mysqli_query($mysqli, $query);
-                        if(mysqli_num_rows($result) > 0){
-                            while ($film = mysqli_fetch_assoc($result)){
-                                echo '<div class="carousel-item">';
-                                if(!empty($film['okladka'])){
-                                    echo '<a href="film.php?id='. htmlspecialchars($film['id']).'">';
-                                    echo '<img src="'. htmlspecialchars($film['okladka']) .'" alt="'. htmlspecialchars($film['tytul']) .'" class="carousel-item-img">';
-                                    echo '</a>';
-                                }
-                                echo '<p class="carousel-item-title">'. htmlspecialchars($film['tytul']).'</p>';
-                                echo '<p class="carousel-item-director">' . htmlspecialchars($film['rezyser']) .'</p>';
-                                echo '<p class="carousel-item-gatunek">' . htmlspecialchars($film['gatunek']) .'</p>';
-                                echo '<p class="carousel-item-rok">' . htmlspecialchars($film['rok_premiery']) .'</p>';
-                                if (isset($_SESSION['user'])) {
-                                    // Użytkownik jest zalogowany
-                                    echo '<button class="carousel-item-btn">WYPOŻYCZ</button>'; // Przycisk wypożycz
-                                }
-                                echo '</div>';
-                            }
-                        } else {
-                            echo '<h2 class="new__heading section-heading3">Brak wyników do wyświetlenia</h2>';
-                        }
-                         
+                    // Sprawdzamy, czy gatunek jest wprowadzony
+                    if (!empty($gatunek)) {
+                        $search_terms[] = htmlspecialchars($gatunek);
+                    }
+
+                    // Łączymy wszystkie elementy w jeden ciąg, oddzielając je przecinkami
+                    if (count($search_terms) > 0) {
+                        echo implode(', ', $search_terms);
+                    } else {
+                        echo "WSZYSTKIE FILMY"; // Jeśli nic nie jest wprowadzone, wyświetlamy "WSZYSTKIE FILMY"
+                    }
                     ?>
+                </h2>
+
+                <div class="carousel-container">
+                    <button class="carousel-button left-button">&#10094;</button>
+                    <div class="carousel-wrapper">
+                        <?php
+                            $query = "SELECT * FROM `filmy` WHERE 1"; 
+
+                            if (!empty($q)) {
+                                $query .= " AND `tytul` LIKE '%$q%'";
+                            }
+                            if (!empty($rezyser)) {
+                                $query .= " AND `rezyser` LIKE '$rezyser'";
+                            }
+
+                            if (!empty($rok_premiery)) {
+                                $query .= " AND `rok_premiery` = '$rok_premiery%'";
+                            }
+
+                            if (!empty($gatunek)) {
+                                $query .= " AND `gatunek` = '$gatunek'";
+                            }
+                            $query .= " GROUP BY `tytul`";
+
+                            $result = mysqli_query($mysqli, $query);
+                            if(mysqli_num_rows($result) > 0){
+                                while ($film = mysqli_fetch_assoc($result)){
+                                    echo '<div class="carousel-item">';
+                                    if(!empty($film['okladka'])){
+                                        echo '<a href="film.php?id='. htmlspecialchars($film['id']).'">';
+                                        echo '<img src="'. htmlspecialchars($film['okladka']) .'" alt="'. htmlspecialchars($film['tytul']) .'" class="carousel-item-img">';
+                                        echo '</a>';
+                                    }
+                                    echo '<p class="carousel-item-title">'. htmlspecialchars($film['tytul']).'</p>';
+                                    echo '<p class="carousel-item-director">' . htmlspecialchars($film['rezyser']) .'</p>';
+                                    echo '<p class="carousel-item-gatunek">' . htmlspecialchars($film['gatunek']) .'</p>';
+                                    echo '<p class="carousel-item-rok">' . htmlspecialchars($film['rok_premiery']) .'</p>';
+                                    if (isset($_SESSION['user'])) {
+                                        // Użytkownik jest zalogowany
+                                        echo '<button onclick="wypozyczFilm(' . htmlspecialchars($film['id']) . ')" class="carousel-item-btn">WYPOŻYCZ</button>'; // Przycisk wypożycz
+                                    }
+                                    echo '</div>';
+                                }
+                            } else {
+                                echo '<h2 class="new__heading section-heading3">Brak wyników do wyświetlenia</h2>';
+                            }
+                            
+                        ?>
+                    </div>
+                    <button class="carousel-button right-button">&#10095;</button>
                 </div>
-                <button class="carousel-button right-button">&#10095;</button>
-            </div>
-</div>
+    </div>
+    
     <section class="spacing"></section>
     <footer class="footer">
         <div class="wrapper"><img src="./img/DVD.jpg" alt="">
@@ -213,7 +214,34 @@ if ($user) {
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="./js/index.js"></script>
-
+    <script src="./js/reset-filters.js"></script>
+    <script>
+    function wypozyczFilm(filmID) {
+        fetch('wyporzycz.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: 'film_id=' + encodeURIComponent(filmID)
+        })
+        .then(response => response.text())
+        .then(data => {
+            alert(data); // Wyświetlenie odpowiedzi z serwera
+        })
+        .catch(error => {
+            console.error('Błąd:', error);
+            alert('Wystąpił błąd podczas wypożyczania filmu.');
+        });
+    }
+    </script>
+    <script> //Popup po zalogowaniu
+        function logoutUser() {
+            localStorage.removeItem('zalegleModalSeen');
+            setTimeout(() => {
+                window.location.href = 'logout.php';
+            }, 100);
+        }
+    </script>
 </body>
 </body>
 
